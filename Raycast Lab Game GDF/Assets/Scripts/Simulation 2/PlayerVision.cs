@@ -12,13 +12,12 @@ public class Player: MonoBehaviour
 
         if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, layerMask))
         {
-            // Calculate the direction from the player to the hit point
+            // Calculate the direction from the player to the hit point and set the y component to 0 to keep it horizontal
             Vector3 direction = (hit.point - transform.position).normalized;
-            // Set the y component to 0 to keep the ray horizontal
             direction.y = 0;
 
             // Draw a ray in the Scene view for visualization
-            Debug.DrawRay(transform.position, new Vector3(direction.x, 0, direction.z) * 100, Color.red);
+            Debug.DrawRay(transform.position, direction * hit.distance, Color.red);
         }
     }
 }

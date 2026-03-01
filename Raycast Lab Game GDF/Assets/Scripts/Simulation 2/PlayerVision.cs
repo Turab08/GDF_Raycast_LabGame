@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Timeline;
 
-public class PlayerRotation : MonoBehaviour
+public class Player: MonoBehaviour
 {
     public float maxDistance = 100f;
     public LayerMask layerMask;
@@ -9,17 +9,16 @@ public class PlayerRotation : MonoBehaviour
     void Update()
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit hit;
 
-        if (Physics.Raycast(ray, out hit, maxDistance, layerMask))
+        if (Physics.Raycast(ray, out RaycastHit hit, maxDistance, layerMask))
         {
+            // Calculate the direction from the player to the hit point
             Vector3 direction = (hit.point - transform.position).normalized;
+            // Set the y component to 0 to keep the ray horizontal
             direction.y = 0;
-            
-            transform.rotation = Quaternion.LookRotation(direction);
 
+            // Draw a ray in the Scene view for visualization
             Debug.DrawRay(transform.position, new Vector3(direction.x, 0, direction.z) * 100, Color.red);
-            Debug.Log(hit.collider.name);
         }
     }
 }

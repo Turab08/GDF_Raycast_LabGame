@@ -14,6 +14,7 @@ public class SimpleRaycast : MonoBehaviour
 
     void DetectObject()
     {
+        // Create a ray from the camera to the mouse position
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
         if (Physics.Raycast(ray, out RaycastHit hitInfo))

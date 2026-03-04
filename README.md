@@ -1,2 +1,7 @@
 # GDF_Raycast_LabGame
-A game with Raycast features for GDF course
+Different Unity Simulations to demonstrate how Raycasting works. It includes:
+
+    1. Detecting Object Name
+    2. Raycasts involving Layermasks
+    3. Simple Enemy AI vision
+

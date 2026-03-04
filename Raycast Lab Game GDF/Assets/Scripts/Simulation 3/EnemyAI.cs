@@ -15,16 +15,18 @@ public class EnemyAI : MonoBehaviour
 
     public Transform player;
     public float detectRange = 10f;
+    public float viewAngle = 90f;
 
     void Update()
     {
         
         Vector3 directionToPlayer = (player.position - transform.position).normalized;
+        float angle = Vector3.Angle(directionToPlayer, transform.forward);
 
         // Perform a raycast to check if the player is within line of sight
         if (Physics.Raycast(transform.position, directionToPlayer, out RaycastHit hit, detectRange))
         {
-            if (hit.transform == player)
+            if (hit.transform == player && angle < viewAngle / 2)
             {
                 currentState = EnemyState.Chasing;
                 
